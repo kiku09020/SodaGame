@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
 		public abstract bool IsPressedPauseButton { get; }
 
-		public abstract bool IsAxisX { get; }
+		public abstract float AxisX { get; }
 
 		public bool IsInputAnyKey()
 		{
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 
 		public override bool IsPressedPauseButton => Input.GetKey(KeyCode.Escape);
 
-		public override bool IsAxisX => (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1);
+		public override float AxisX => Input.GetAxisRaw("Horizontal");
 	}
 
 	/// <summary> デバイス入力 </summary>
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
 
 		public override bool IsPressedPauseButton => (DeviceDataReceiver.IsPressedB);
 
-		public override bool IsAxisX => (Mathf.Abs(DeviceDataReceiver.Acc.x) >= threasholds.Side);
+		public override float AxisX => DeviceDataReceiver.Acc.x;
 	}
 
 	//--------------------------------------------------

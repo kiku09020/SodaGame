@@ -69,6 +69,8 @@ public static class SerialSelector
 					IsDisconnected = false;
 				}
 			}
+
+            Debug.Log($"PortName: {TargetPortName}, Disconnected: {IsDisconnected}");
 		}
 	}
 
@@ -97,6 +99,8 @@ public static class SerialSelector
     // 使用するシリアルポート名をセットする
     public static bool SetNewPortName(string portName)
     {
+        CheckPortNames();
+
         if (portName != null) {
             // リストに含まれているか判定
             if (portNames.Contains(portName)) {

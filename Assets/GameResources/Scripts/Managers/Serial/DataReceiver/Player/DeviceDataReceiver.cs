@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeviceDataReceiver : DataReceiver_Base {
 
+	[SerializeField] bool isDebug;
+
 	/// <summary> デバイスの傾き </summary>
 	public static Vector3 Acc { get; private set; }
 
@@ -28,7 +30,9 @@ public class DeviceDataReceiver : DataReceiver_Base {
 			// 押されたかどうかをbool型に変換
 			IsPressedA = int.Parse(data[3]) != 0;
 
-			print($"{Acc},{IsPressedA}");
+			if (isDebug && Debug.isDebugBuild) {
+				print($"{Acc},{IsPressedA}");
+			}
 		}
 
 		// 例外

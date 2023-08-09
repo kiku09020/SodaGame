@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Game.Player {
+    /// <summary> ÉvÉåÉCÉÑÅ[ÇÃíYé_ÇÃä«óù </summary>
+    public class PlayerSodaManager : PlayerComponent {
+        /* Fields */
+
+        //-------------------------------------------------------------------
+        /* Properties */
+
+        //-------------------------------------------------------------------
+        /* Events */
+
+        //-------------------------------------------------------------------
+        /* Methods */
+
+    }
+}
