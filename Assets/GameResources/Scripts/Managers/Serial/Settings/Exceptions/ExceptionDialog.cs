@@ -33,7 +33,8 @@ public class ExceptionDialog : MonoBehaviour {
 
 		dialogImage.gameObject.SetActive(true);
 		dialogImage.rectTransform.DOScale(1, tweenDuration)
-			.SetEase(tweenEase);
+			.SetEase(tweenEase)
+			.SetUpdate(true);
 	}
 
 	/// <summary> ダイアログ非表示 </summary>
@@ -41,6 +42,7 @@ public class ExceptionDialog : MonoBehaviour {
 	{
 		dialogImage.rectTransform.DOScale(0, tweenDuration)
 			.SetEase(tweenEase)
-			.OnComplete(() => dialogImage.gameObject.SetActive(false));
+			.OnComplete(() => dialogImage.gameObject.SetActive(false))
+			.SetUpdate(true);
 	}
 }

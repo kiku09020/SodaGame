@@ -83,7 +83,8 @@ public class SerialSettingLog:MonoBehaviour
     {
         var tween = image.rectTransform.DOScale(0, duration)
             .SetEase(ease)
-            .SetLink(image.gameObject);
+            .SetLink(image.gameObject)
+			.SetUpdate(true);
 
         // 0 -> 1
         if(doFrom) {

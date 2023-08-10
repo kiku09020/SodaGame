@@ -63,7 +63,7 @@ public class SerialHandler : MonoBehaviour {
 	// シリアルポートを開く
 	void Open()
 	{
-		if (SerialSelector.TargetPortName != null) {
+		if (SerialSelector.TargetPortName != null && serialPort == null) {
 			serialPort = new SerialPort(SerialSelector.TargetPortName, baudRate, Parity.None, 8, StopBits.One);        // ポートインスタンス作成
 
 			try {

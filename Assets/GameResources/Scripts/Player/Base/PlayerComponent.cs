@@ -1,3 +1,4 @@
+using Game.Player.State;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ namespace Game.Player {
         /* Fields */
         [Header("Debug")]
         [SerializeField,Tooltip("デバッグ中かどうか")] protected bool isDebug = true;
+
+		[Header("Components")]
+		[SerializeField] protected PlayerStateMachine stateMachine;
 
 		//-------------------------------------------------------------------
 		/* Properties */

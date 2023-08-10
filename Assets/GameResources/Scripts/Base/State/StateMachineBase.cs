@@ -5,8 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GameController.State {
-	public abstract class StateMatchineBase<T,U> : ObjectComponentBase<U> 
-		where T : StateBase where U: ObjectCore{
+	public abstract class StateMachineBase<T,U> : ObjectComponentBase<U> 
+		where T : IStateBase where U: ObjectCore{
 
 		[Header("State")]
 		[SerializeField] T initState;
@@ -25,7 +25,7 @@ namespace GameController.State {
 		protected override void OnStart()
 		{
 			NowState = initState;
-			NowState.OnEnter();
+			NowState.OnStateEnter();
 		}
 
 		//--------------------------------------------------
@@ -33,9 +33,9 @@ namespace GameController.State {
 		/// <summary>
 		/// Œ»İ‚Ìó‘Ô‚ÌXVˆ—
 		/// </summary>
-		protected override void OnUpdate()
+		protected override void OnFixedUpdate()
 		{
-			NowState.OnUpdate();
+			NowState.OnStateUpdate();
 		}
 
 		//--------------------------------------------------
@@ -45,9 +45,9 @@ namespace GameController.State {
 		/// <param name="state">Ÿ‚Ìó‘Ô</param>
 		public void StateTransition(T state)
 		{
-			NowState.OnExit();
+			NowState.OnStateExit();
 			NowState = state;
-			NowState.OnEnter();
+			NowState.OnStateEnter();
 		}
 
 		/// <summary>

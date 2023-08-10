@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using GameController.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -38,7 +39,7 @@ public class SerialSettingManager : MonoBehaviour
 
 	//--------------------------------------------------
 
-	private void FixedUpdate()
+	private void Update()
 	{
         // —áŠOƒ_ƒCƒAƒƒO‚Ì•\Ž¦
         DispSerialException();
@@ -48,8 +49,12 @@ public class SerialSettingManager : MonoBehaviour
 		// ƒƒO”wŒi —LŒø‰»
 		if (CheckLogConditions()) {
 			if (!enableBack) {
+                PauseManager.Pause();               // ˆêŽž’âŽ~
+
+                // ”wŒiƒtƒF[ƒhƒCƒ“
 				backImage.gameObject.SetActive(true);
-				backImage.DOFade(.5f, backFadeDuration);
+				backImage.DOFade(.5f, backFadeDuration)
+                    .SetUpdate(true);
 				enableBack = true;
 			}
 		}
@@ -57,8 +62,12 @@ public class SerialSettingManager : MonoBehaviour
         // ƒƒO”wŒi –³Œø‰»
         else {
 			if (enableBack) {
+                PauseManager.UnPause();             // ˆêŽž’âŽ~‰ðœ
+
+                // ”wŒiƒtƒF[ƒhƒAƒEƒg
 				backImage.DOFade(0, backFadeDuration)
-						 .OnComplete(() => backImage.gameObject.SetActive(false));
+						 .OnComplete(() => backImage.gameObject.SetActive(false))
+                         .SetUpdate(true);
 				enableBack = false;
 			}
 		}

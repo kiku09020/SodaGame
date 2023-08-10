@@ -69,8 +69,6 @@ public static class SerialSelector
 					IsDisconnected = false;
 				}
 			}
-
-            Debug.Log($"PortName: {TargetPortName}, Disconnected: {IsDisconnected}");
 		}
 	}
 

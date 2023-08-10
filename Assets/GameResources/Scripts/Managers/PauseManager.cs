@@ -12,11 +12,6 @@ namespace GameController.Manager
 
 		//--------------------------------------------------
 
-		protected override void OnStart()
-		{
-            UnPause();
-		}
-
         public static void Pause()
         {
             IsPausing = true;
