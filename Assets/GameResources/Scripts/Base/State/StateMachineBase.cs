@@ -22,7 +22,7 @@ namespace GameController.State {
 		/// <summary>
 		/// 初期状態セットアップ
 		/// </summary>
-		protected override void OnStart()
+		public void StateSetup()
 		{
 			NowState = initState;
 			NowState.OnStateEnter();
@@ -33,7 +33,7 @@ namespace GameController.State {
 		/// <summary>
 		/// 現在の状態の更新処理
 		/// </summary>
-		protected override void OnFixedUpdate()
+		public void StateUpdate()
 		{
 			NowState.OnStateUpdate();
 		}

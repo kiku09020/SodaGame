@@ -1,57 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class ObjectPoolBase<T> : MonoBehaviour where T:PooledObject<T>
+namespace Base.Pool
 {
-	[Header("ObjectPool")]
-	[SerializeField] protected T prefab;			// 生成するオブジェクトのプレハブ
-	[SerializeField] Transform generatedParent;     // 生成される親Transform		
-
-	[Space(10)]
-	[SerializeField] bool checkCollection = true;
-	[SerializeField] int defaultCapacity = 20;
-	[SerializeField] int maxSize = 100;
-
-	protected ObjectPool<T> pool;
-
-	/// <summary> プールの取得 </summary>
-	public ObjectPool<T> GetPool() => pool;
-
-	//--------------------------------------------------
-	protected void Start()
+	public abstract class ObjectPoolBase<T> : MonoBehaviour where T : PooledObject<T>
 	{
-		pool = new ObjectPool<T>(OnCreateObject, OnGetFromPool, OnReleaseToPool, OnDestroyObject,
-			checkCollection, defaultCapacity, maxSize);
-	}
+		/* Fields */
+		[Header("ObjectPool")]
+		[SerializeField, Tooltip("二重解放のチェック")] protected bool checkCollection = true;
+		[SerializeField, Tooltip("Stackの初期サイズ")] protected int defaultCapacity = 20;
+		[SerializeField, Tooltip("プールの最大サイズ")] protected int maxSize = 100;
 
-	/// <summary> オブジェクト作成時の処理 </summary>
-	protected virtual T OnCreateObject()
-	{
-		T obj = Instantiate(prefab, generatedParent);
-		obj.OnCreated(pool);
-		obj.OnGetted();
+		//-------------------------------------------------------------------
+		/* Events */
+		void Awake()
+		{
+			CreatePool();
+		}
 
-		return obj;
-	}
+		//-------------------------------------------------------------------
+		/* Methods */
+		/// <summary> プールの作成 </summary>
+		protected abstract void CreatePool();
 
-	/// <summary> オブジェクトをプールから取得するときの処理 </summary>
-	protected virtual void OnGetFromPool(T obj)
-	{
-		obj.OnGetted();
-	}
+		/// <summary> オブジェクトをプールから取得するときの処理 </summary>
+		protected abstract void OnGetFromPool(T obj);
 
+		/// <summary> オブジェクトをプールに返すときの処理 </summary>
+		protected abstract void OnReleaseToPool(T obj);
 
-	/// <summary> オブジェクトをプールに返すときの処理 </summary>
-	protected virtual void OnReleaseToPool(T obj)
-	{
-		obj.OnReleased();
-	}
+		/// <summary> プール内のオブジェクトを削除するときの処理 </summary>
+		protected abstract void OnDestroyObject(T obj);
 
-	/// <summary> プール内のオブジェクトを削除するときの処理 </summary>
-	protected virtual void OnDestroyObject(T obj)
-	{
-		Destroy(obj.gameObject);
 	}
 }

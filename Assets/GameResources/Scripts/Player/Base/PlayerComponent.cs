@@ -18,7 +18,7 @@ namespace Game.Player {
 		//-------------------------------------------------------------------
 		/* Events */
 
-		protected override void OnStart()
+		void Start()
 		{
 			// デバッグビルドが無効な場合、自動で全てfalseにする
 			if(!Debug.isDebugBuild) {

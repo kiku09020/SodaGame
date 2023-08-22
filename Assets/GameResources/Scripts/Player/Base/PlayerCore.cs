@@ -1,19 +1,31 @@
+using Game.Player.State;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Player {
     public class PlayerCore : ObjectCore {
-        /* Fields */
+		/* Fields */
+		[SerializeField] PlayerStateMachine stateMachine;
 
-        //-------------------------------------------------------------------
-        /* Properties */
+		//-------------------------------------------------------------------
+		/* Properties */
 
-        //-------------------------------------------------------------------
-        /* Events */
+		//-------------------------------------------------------------------
+		/* Events */
 
-        //-------------------------------------------------------------------
-        /* Methods */
+		private void Start()
+		{
+			stateMachine.StateSetup();
+		}
 
-    }
+		public void FixedUpdate()
+		{
+			stateMachine.StateUpdate();
+		}
+
+		//-------------------------------------------------------------------
+		/* Methods */
+
+	}
 }

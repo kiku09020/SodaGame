@@ -3,36 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class PooledObject<T> : ObjectCore where T:PooledObject<T>
+namespace Base.Pool
 {
-	protected IObjectPool<T> pool;      // 格納されるオブジェクトプール
-
-	bool isReleased;
-
-	//--------------------------------------------------
-	/// <summary> 初期化 </summary>
-	public virtual void OnCreated(IObjectPool<T> pool)
+	public interface IPooledObject<T> where T : PooledObject<T>
 	{
-		this.pool = pool;
+		/// <summary> 作成されるときの処理 </summary>
+		void OnCreated(IObjectPool<T> pool);
+
+		/// <summary> 取得されるときの処理 </summary>
+		void OnGetted();
+
+		/// <summary> プールに返されるときの処理 </summary>
+		void OnReleased();
 	}
 
-	/// <summary> 取得されたときの処理 </summary>
-	public virtual void OnGetted()
+	public class PooledObject<T> : ObjectCore, IPooledObject<T> where T : PooledObject<T>
 	{
-		gameObject.SetActive(true);
-		isReleased = false;
-	}
+		protected IObjectPool<T> pool;      // 格納されるオブジェクトプール
 
-	public virtual void OnReleased()
-	{
-		gameObject.SetActive(false);
-		isReleased = true;
-	}
+		bool isReleased;
 
-	public void Release()
-	{
-		if (!isReleased && gameObject.activeSelf) {
-			pool.Release(this as T);
+		//--------------------------------------------------
+		public virtual void OnCreated(IObjectPool<T> pool)
+		{
+			this.pool = pool;
+		}
+
+		public virtual void OnGetted()
+		{
+			gameObject.SetActive(true);
+			isReleased = false;
+		}
+
+		public virtual void OnReleased()
+		{
+			gameObject.SetActive(false);
+			isReleased = true;
+		}
+
+		public void Release()
+		{
+			if (!isReleased) {
+				pool.Release(this as T);
+			}
 		}
 	}
 }

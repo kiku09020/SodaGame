@@ -63,6 +63,7 @@ namespace Game.Player {
 				OnStopMoment();
 			}
 
+			// “ü—Í•Û‘¶
 			prevX = PlayerController.ActiveController.AxisX;
 		}
 

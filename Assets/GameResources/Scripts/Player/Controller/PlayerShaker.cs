@@ -57,7 +57,7 @@ namespace Game.Player {
 					OnStopShakeMoment();
 				}
 
-				stateMachine.StateTransition("Normal");		// ’Êíó‘Ô‚É‘JˆÚ
+				stateMachine.StateTransition("Soda");		// ’Êíó‘Ô‚É‘JˆÚ
 			}
 
 			if (isDebug) {

@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Game.Player.State {
     public class SodaState : PlayerStateBase {
 		/* Fields */
+		[SerializeField] PlayerSodaMover mover;
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -17,7 +18,7 @@ namespace Game.Player.State {
 
 		public override void OnStateUpdate()
 		{
-
+			mover.MoveWithSoda();
 		}
 
 		public override void OnStateExit()

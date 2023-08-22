@@ -13,10 +13,8 @@ namespace GameController.Manager {
 
         //--------------------------------------------------
 
-        protected override void Start()
+        void Start()
         {
-            base.Start();
-
             IsGameCleared = false;
             IsGameOvered = false;
         }

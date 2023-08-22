@@ -10,40 +10,7 @@ public abstract class ObjectComponentBase<T> : MonoBehaviour where T : ObjectCor
 
     //--------------------------------------------------
 
-    protected void Awake()
-    {
-        // ƒCƒxƒ“ƒg’Ç‰Á
-        if (core != null) {
-            core.OnStartEvent += StartEvent;
-            core.OnFixedUpdateEvent += FixedUpdateEvent;
-            core.OnUpdateEvent += UpdateEvent;
-        }
-    }
+	//--------------------------------------------------
 
 	//--------------------------------------------------
-	void StartEvent()
-    {
-        if(isEnable) {
-            OnStart();
-        }
-    }
-
-	void FixedUpdateEvent()
-	{
-        if (isEnable) {
-            OnFixedUpdate();
-        }
-	}
-
-    void UpdateEvent()
-    {
-        if (isEnable) {
-            OnUpdate();
-        }
-    }
-
-	//--------------------------------------------------
-	protected virtual void OnStart() { }
-    protected virtual void OnUpdate() { }
-    protected virtual void OnFixedUpdate() { }
 }

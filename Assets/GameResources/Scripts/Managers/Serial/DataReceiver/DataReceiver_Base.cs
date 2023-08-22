@@ -19,6 +19,8 @@ public abstract class DataReceiver_Base:MonoBehaviour
 
 	private async void Start()
 	{
+		NAudioController.Play("exp_wav");
+
 		// Ú‘±‰Â”\‚É‚È‚é‚Ü‚Å‘Ò‹@
 		await UniTask.WaitUntil(() => handler.IsPortEnable, cancellationToken: this.GetCancellationTokenOnDestroy());
 
