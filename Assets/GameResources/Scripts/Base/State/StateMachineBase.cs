@@ -36,6 +36,8 @@ namespace GameController.State {
 		public void StateUpdate()
 		{
 			NowState.OnStateUpdate();
+
+			print(NowState);
 		}
 
 		//--------------------------------------------------

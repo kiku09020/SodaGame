@@ -14,13 +14,14 @@ namespace Game.Player {
 		[Header("Parameters")]
 		[SerializeField, Tooltip("振ってるかどうかの閾値")]
 		float shakableThreshold = 5;
-		[SerializeField, Tooltip("ShakePowerの最大値")]
-		float maxShakePower = 150;
 
 		[SerializeField, Tooltip("振られているときのアニメーションの値"), Range(0, 1)]
 		float shakingTweenValue = .1f;
 		[SerializeField, Range(0, 1)] float shakingTweenDuration = .1f;
 		[SerializeField] Ease tweenEase;
+
+		[Header("Debug")]
+		[SerializeField] float keyBoardSodaAmount = 1;
 
 		/// <summary> シェイク中か </summary>
 		public bool IsShaking { get; private set; }
@@ -33,22 +34,35 @@ namespace Game.Player {
 
 		//-------------------------------------------------------------------
 		/* Properties */
-		public float ShakePower => shakePower;
-
 		//-------------------------------------------------------------------
 		/* Methods */
 		public void Shake()
 		{
-			// ボタンを押している状態で、加速度の大きさが閾値以上の値以上だったら、振っている判定にする
-			IsShaking = PlayerController.ActiveController.IsPressed &&
-						DeviceDataReceiver.Acc.magnitude > shakableThreshold;
+			float shakeAmount = 0;
+
+			// m5
+			if (PlayerController.ActiveCtrlIsDevice) {
+				// ボタンを押している状態で、加速度の大きさが閾値以上の値以上だったら、振っている判定にする
+				IsShaking = PlayerController.ActiveController.IsPressed &&
+							DeviceDataReceiver.Acc.magnitude > shakableThreshold;
+
+				shakeAmount = DeviceDataReceiver.Acc.magnitude;
+			}
+
+			// keyboard
+			else {
+				IsShaking = PlayerController.ActiveController.IsPressed;
+				shakeAmount = keyBoardSodaAmount;
+			}
 
 			if (IsShaking) {
+				// 振り始め
 				if (!isShakeFirst) {
 					OnShakeMoment();
 				}
 
-				ShakeUpdate();
+				// 更新処理
+				ShakeUpdate(shakeAmount);
 			}
 
 			// 離されたときの処理
@@ -57,7 +71,7 @@ namespace Game.Player {
 					OnStopShakeMoment();
 				}
 
-				stateMachine.StateTransition("Soda");		// 通常状態に遷移
+				stateMachine.StateTransition("Soda");       // 通常状態に遷移
 			}
 
 			if (isDebug) {
@@ -88,12 +102,14 @@ namespace Game.Player {
 		}
 
 		// 振っているときの更新処理
-		void ShakeUpdate()
+		void ShakeUpdate(float shakeAmount)
 		{
 			// デバイスの加速度を加算
-			if (shakePower < maxShakePower) {
-				shakePower += DeviceDataReceiver.Acc.magnitude;
-			}
+			shakePower += shakeAmount;
+
+			// ソーダパワーに反映
+			sodaManager.SetPower(shakePower);
+
 		}
 	}
 }
