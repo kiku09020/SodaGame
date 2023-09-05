@@ -78,14 +78,6 @@ public class NAudioController : MonoBehaviour {
 		SetAudioUnits(currentDirPath + audDirPath, deviceNames[targetDeviceNameIndex]);
 	}
 
-	private void Update()
-	{
-		// ÉLÅ[ì¸óÕÇ≈çƒê∂
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			Play("exp_wav");
-		}
-	}
-
 	private void OnDestroy()
 	{
 		audioDict.Clear();

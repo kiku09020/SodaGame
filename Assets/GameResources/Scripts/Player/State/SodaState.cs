@@ -17,6 +17,7 @@ namespace Game.Player.State {
 		public override void OnStateEnter()
 		{
 			sodaParticle.Play();
+			NAudioController.Play("sodaFryingVibration");
 		}
 
 		public override void OnStateUpdate()
@@ -28,6 +29,7 @@ namespace Game.Player.State {
 		public override void OnStateExit()
 		{
 			sodaParticle.Stop();
+			NAudioController.Stop("sodaFryingVibration");
 		}
 
 		//-------------------------------------------------------------------

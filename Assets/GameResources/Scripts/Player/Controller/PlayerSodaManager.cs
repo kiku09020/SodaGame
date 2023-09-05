@@ -15,12 +15,9 @@ namespace Game.Player {
 
 		float power;		// 現在の力
 
-		[Header("UI")]
-		[SerializeField] Image filledImage;
-
 		//-------------------------------------------------------------------
 		/* Properties */
-		float powerRate => power / maxPower;		// 力 / 最大力
+		public float PowerRate => power / maxPower;		// 力 / 最大力
 
 		/// <summary> ソーダ噴き出し可能か </summary>
 		public bool IsSodable { get; private set; }
@@ -30,8 +27,6 @@ namespace Game.Player {
 		private void FixedUpdate()
 		{
 			IsSodable = (power > 0) ? true : false;		// 飛行可能フラグの判定
-
-			filledImage.fillAmount = powerRate;			// FillAmountの反映
 		}
 
 		// ソーダ状態の時のUpdate
