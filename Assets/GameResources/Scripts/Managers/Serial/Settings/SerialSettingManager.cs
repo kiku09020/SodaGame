@@ -32,7 +32,7 @@ public class SerialSettingManager : MonoBehaviour {
 
 	void Start()
 	{
-		backImage.DOFade(0, 0);
+		backImage.gameObject.SetActive(false);
 
 		if (!isDebug) {
 			SetSelectLogUI();

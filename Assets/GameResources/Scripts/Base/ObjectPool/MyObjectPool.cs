@@ -31,5 +31,20 @@ namespace Base.Pool
 
 			return obj;
 		}
+
+		protected override void OnGetFromPool(T obj)
+		{
+			obj.gameObject.SetActive(true);
+		}
+
+		protected override void OnReleaseToPool(T obj)
+		{
+			obj.gameObject.SetActive(false);
+		}
+
+		protected override void OnDestroyObject(T obj)
+		{
+			Destroy(obj.gameObject);
+		}
 	}
 }

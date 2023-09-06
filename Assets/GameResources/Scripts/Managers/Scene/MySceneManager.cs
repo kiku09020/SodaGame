@@ -61,7 +61,7 @@ public class MySceneManager {
 	/// <param name="sceneName">シーン名</param>
 	public static void LoadScene(string sceneName)
 	{
-		LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
+		SceneManager.LoadScene(sceneName);
 	}
 
 	// シーンが読み込めるかどうかの判定

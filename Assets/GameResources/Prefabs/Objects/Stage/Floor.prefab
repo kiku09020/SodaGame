@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7622557544995989664, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
       propertyPath: m_Name
-      value: Floor Variant
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411897695362302577, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8411897695362302577, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -63,5 +67,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7622557544995989664, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4216597350726156468}
+    - targetCorrespondingSourceObject: {fileID: 7622557544995989664, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4207873183062520872}
   m_SourcePrefab: {fileID: 100100000, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+--- !u!1 &6817500056669506464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7622557544995989664, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+  m_PrefabInstance: {fileID: 3986921096904991488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!251 &4216597350726156468
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817500056669506464}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
+--- !u!114 &4207873183062520872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817500056669506464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da10f7dac4f663429996255e9b6233a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 7670306273622755125}
+--- !u!212 &7670306273622755125 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6712058305536353333, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+  m_PrefabInstance: {fileID: 3986921096904991488}
+  m_PrefabAsset: {fileID: 0}
