@@ -7,6 +7,8 @@ namespace Base.Pool
 {
 	public interface IPooledObject<T> where T : PooledObject<T>
 	{
+		bool IsReleased { get; }
+
 		/// <summary> 作成されるときの処理 </summary>
 		void OnCreated(IObjectPool<T> pool);
 
@@ -21,7 +23,7 @@ namespace Base.Pool
 	{
 		protected IObjectPool<T> pool;      // 格納されるオブジェクトプール
 
-		bool isReleased;
+		public bool IsReleased { get; protected set; }
 
 		//--------------------------------------------------
 		public virtual void OnCreated(IObjectPool<T> pool)
@@ -32,18 +34,18 @@ namespace Base.Pool
 		public virtual void OnGetted()
 		{
 			gameObject.SetActive(true);
-			isReleased = false;
+			IsReleased = false;
 		}
 
 		public virtual void OnReleased()
 		{
 			gameObject.SetActive(false);
-			isReleased = true;
+			IsReleased = true;
 		}
 
 		public void Release()
 		{
-			if (!isReleased) {
+			if (!IsReleased) {
 				pool.Release(this as T);
 			}
 		}

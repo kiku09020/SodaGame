@@ -77,6 +77,13 @@ public class SEManager : AudioManager<SEManager>
 		return randomClip;
 	}
 
+	/// <summary> âπê∫ÇÃí‚é~ </summary>
+	public void StopAudio()
+	{
+		source.Stop();
+		source.clip = null;
+	}
+
 	//--------------------------------------------------
 	/* Pitch */
 

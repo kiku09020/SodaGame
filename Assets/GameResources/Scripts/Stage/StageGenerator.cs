@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Stage {
-	public class StageGenerator : MyObjectPool<Stage> {
+	public class StageGenerator : MyObjectPool<Air> {
 		/* Fields */
 		[Header("Parameters")]
 		[SerializeField] float xRange = 3;
@@ -22,7 +22,7 @@ namespace Game.Stage {
 
 		float currentCameraPosY;        // 現在のカメラのY位置
 
-		List<Stage> stages = new List<Stage>();
+		List<Air> stages = new List<Air>();
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -43,20 +43,32 @@ namespace Game.Stage {
 			DestroyGeneratedObj();
 		}
 
+		protected override void OnGetFromPool(Air obj)
+		{
+			base.OnGetFromPool(obj);
+
+			stages.Add(obj);
+		}
+
+		protected override void OnReleaseToPool(Air obj)
+		{
+			base.OnReleaseToPool(obj);
+
+			stages.Remove(obj);
+		}
+
 		//-------------------------------------------------------------------
 		/* Methods */
-		public void Generate()
+		void Generate()
 		{
 			var obj = pool.Get();
 
 			SetGenrerateHeight();
 			SetStageTransform(obj);
-
-			stages.Add(obj);
 		}
 
 		// 位置とか大きさ指定する
-		void SetStageTransform(Stage stage)
+		void SetStageTransform(Air stage)
 		{
 			// 位置指定
 			float randomX = Random.Range(-xRange, xRange);
@@ -82,8 +94,9 @@ namespace Game.Stage {
 				if ((currentCameraPosY - stage.transform.position.y) > destroyDistance &&
 					currentCameraPosY > stage.transform.position.y) {
 
-					stages.Remove(stage);
-					pool.Release(stage);
+					if (!stage.IsReleased) {
+						pool.Release(stage);
+					}
 
 					break;
 				}

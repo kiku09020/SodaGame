@@ -19,7 +19,6 @@ public class DeviceDataReceiver : DataReceiver_Base {
 		var data = handler.GetSplitedData();     // データ取得
 
 		try {
-
 			// データ文字列からfloat型に変換して、ベクトルに適用
 			float x = float.Parse(data[0]);
 			float y = float.Parse(data[1]);
@@ -29,9 +28,10 @@ public class DeviceDataReceiver : DataReceiver_Base {
 
 			// 押されたかどうかをbool型に変換
 			IsPressedA = int.Parse(data[3]) != 0;
+			IsPressedB = int.Parse(data[4]) != 0;
 
 			if (isDebug && Debug.isDebugBuild) {
-				print($"{Acc},{IsPressedA}");
+				print($"{Acc},{IsPressedA},{IsPressedB}");
 			}
 		}
 

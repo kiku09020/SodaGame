@@ -35,12 +35,22 @@ public class NAudioController : MonoBehaviour {
 				audioFilePath = path;
 				audioFileName = System.IO.Path.GetFileNameWithoutExtension(path);
 
+				IWaveProvider waveProvider;
+
 				// WaveOutの初期化
 				waveOut.DeviceNumber = deviceNum;
 				reader = new WaveFileReader(audioFilePath);
-				LoopStream loop = new LoopStream(reader);
 
-				waveOut.Init(loop);
+				// 名前にループ文字列がついていたら、ループにする
+				if (audioFileName.Contains("_loop")) {
+					waveProvider = new LoopStream(reader);
+				}
+
+				else {
+					waveProvider = reader;
+				}
+
+				waveOut.Init(waveProvider);
 			}
 
 			catch (System.Exception e) {
@@ -87,13 +97,17 @@ public class NAudioController : MonoBehaviour {
 	/// <summary> 音声再生 </summary>
 	static public void Play(string audioName)
 	{
-		audioDict[audioName]?.PlayAudio();
+		if (audioDict.Count != 0) {
+			audioDict[audioName]?.PlayAudio();
+		}
 	}
 
 	/// <summary> 音声停止 </summary>
 	static public void Stop(string audioName)
 	{
-		audioDict[audioName]?.StopAudio();
+		if(audioDict.Count != 0) {
+			audioDict[audioName]?.StopAudio();
+		}
 	}
 
 	//--------------------------------------------------

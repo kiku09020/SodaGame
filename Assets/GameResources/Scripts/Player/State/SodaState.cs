@@ -9,15 +9,18 @@ namespace Game.Player.State {
 		[SerializeField] PlayerSodaManager sodaManager;
 
 		[SerializeField] ParticleSystem sodaParticle;
+		[SerializeField] SEManager seManager;
 
 		//-------------------------------------------------------------------
 		/* Properties */
 		//-------------------------------------------------------------------
 		/* Events */
-		public override void OnStateEnter()
+		public override async void OnStateEnter()
 		{
 			sodaParticle.Play();
-			NAudioController.Play("sodaFryingVibration");
+			NAudioController.Play("sodaFryingVibration_loop");
+			await seManager.SetLoop()
+				.PlayAudio("Soda");
 		}
 
 		public override void OnStateUpdate()
@@ -29,7 +32,10 @@ namespace Game.Player.State {
 		public override void OnStateExit()
 		{
 			sodaParticle.Stop();
-			NAudioController.Stop("sodaFryingVibration");
+			NAudioController.Stop("sodaFryingVibration_loop");
+			seManager
+				.SetLoop(false)
+				.StopAudio();
 		}
 
 		//-------------------------------------------------------------------

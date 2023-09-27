@@ -35,11 +35,13 @@ namespace Base.Pool
 		protected override void OnGetFromPool(T obj)
 		{
 			obj.gameObject.SetActive(true);
+			obj.OnGetted();
 		}
 
 		protected override void OnReleaseToPool(T obj)
 		{
 			obj.gameObject.SetActive(false);
+			obj.OnReleased();
 		}
 
 		protected override void OnDestroyObject(T obj)

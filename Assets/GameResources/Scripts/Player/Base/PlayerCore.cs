@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Player {
-    public class PlayerCore : ObjectCore {
+	public class PlayerCore : ObjectCore {
 		/* Fields */
 		[SerializeField] PlayerStateMachine stateMachine;
+
+		[SerializeField] ParticleSystem hitEffect;
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -22,6 +24,13 @@ namespace Game.Player {
 		public void FixedUpdate()
 		{
 			stateMachine.StateUpdate();
+		}
+
+		private void OnCollisionEnter2D(Collision2D collision)
+		{
+			NAudioController.Play("Hit");
+
+			Instantiate(hitEffect, collision.contacts[0].point, Quaternion.identity);
 		}
 
 		//-------------------------------------------------------------------

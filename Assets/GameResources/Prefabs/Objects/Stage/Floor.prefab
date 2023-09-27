@@ -106,12 +106,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6817500056669506464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1da10f7dac4f663429996255e9b6233a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 7670306273622755125}
+  upSpeed: 0.0001
+  airLifeTime: 7.5
+  airBlinkingTime: 3
+  cycle: 1
 --- !u!212 &7670306273622755125 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6712058305536353333, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
