@@ -17,6 +17,8 @@ namespace GameController.Manager {
 		/// <summary> ゲームオーバーフラグ </summary>
 		public static bool IsGameOvered { get; private set; }
 
+		public static bool IsResult { get; private set; }
+
 		bool once;
 
 		//--------------------------------------------------
@@ -27,6 +29,7 @@ namespace GameController.Manager {
 
 			IsGameCleared = false;
 			IsGameOvered = false;
+			IsResult = false;
 		}
 
 		private async void FixedUpdate()
@@ -43,6 +46,7 @@ namespace GameController.Manager {
 					await UniTask.Delay(1000);
 
 					UIManager.ShowUIGroup<GameOverUIGroup>();
+					IsResult = true;
 				}
 			}
 		}

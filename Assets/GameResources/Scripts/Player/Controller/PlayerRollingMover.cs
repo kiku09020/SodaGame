@@ -20,7 +20,7 @@ namespace Game.Player {
 
 		float prevX;     // ‘OƒtƒŒ[ƒ€‚Ì¶‰E“ü—Í
 
-		bool moveFirst;     // ˆÚ“®‚µ‚½uŠÔ
+		bool moving;     // ˆÚ“®‚µ‚½uŠÔ
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -36,8 +36,8 @@ namespace Game.Player {
 			if (!PlayerController.ActiveController.IsPressed) {
 
 				// ˆÚ“®‚µ‚½uŠÔ
-				if (!moveFirst) {
-					moveFirst = true;
+				if (!moving) {
+					moving = true;
 					rb.constraints = RigidbodyConstraints2D.None;
 				}
 
@@ -70,8 +70,8 @@ namespace Game.Player {
 		// ’â~‚µ‚½uŠÔ
 		void OnStopMoment()
 		{
-			if (moveFirst && core.IsInAir) {
-				moveFirst = false;
+			if (moving && core.IsInAir) {
+				moving = false;
 				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 				rb.velocity = Vector2.zero;
 

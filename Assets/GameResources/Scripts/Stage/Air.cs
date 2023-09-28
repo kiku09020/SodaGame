@@ -8,11 +8,13 @@ namespace Game.Stage {
 		/* Fields */
 		[Header("Components")]
 		[SerializeField] SpriteRenderer rend;
+		[SerializeField] BuoyancyEffector2D buoyancy;
+		[SerializeField] ParticleSystem deadEffect;
 
 
 		[Header("Parameters")]
 		[SerializeField, Tooltip("移動速度")] float upSpeedMin = .0001f;
-		[SerializeField, Tooltip("")] float upSpeedMax = .01f; 
+		[SerializeField, Tooltip("")] float upSpeedMax = .01f;
 
 		[SerializeField, Tooltip("寿命時間")] float airLifeTime = 7.5f;
 		[SerializeField, Tooltip("点滅時間")] float airBlinkingTime = 3;
@@ -47,7 +49,10 @@ namespace Game.Stage {
 			base.OnReleased();
 
 			lifeTimer = 0;
-			rend.color = startColor;	
+			rend.color = startColor;
+
+			buoyancy.enabled = true;
+			rend.enabled = true;
 		}
 
 		public override void OnGetted()
@@ -61,7 +66,7 @@ namespace Game.Stage {
 		/* Methods */
 		void SetUpSpeed()
 		{
-			upSpeed=Random.Range(upSpeedMin, upSpeedMax);
+			upSpeed = Random.Range(upSpeedMin, upSpeedMax);
 		}
 
 		public void SetWidth(float width)
@@ -83,7 +88,13 @@ namespace Game.Stage {
 
 			if (lifeTimer >= airLifeTime) {
 				lifeTimer = 0;
-				Release();
+
+				// 非表示、浮力無効化
+				rend.enabled = false;
+				buoyancy.enabled = false;
+
+				// 再生(再生終了時にRelease)
+				deadEffect.Play();
 			}
 		}
 

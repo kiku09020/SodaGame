@@ -11,6 +11,9 @@ namespace Game.Player.State {
 
         public string Name => stateName;
 
+        [Header("Components")]
+        [SerializeField] protected PlayerRendererController rendererController;
+
         public abstract void OnStateEnter();
         public abstract void OnStateUpdate();
         public abstract void OnStateExit();

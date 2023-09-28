@@ -9,6 +9,7 @@ namespace Game.Player {
 		[SerializeField] PlayerStateMachine stateMachine;
 
 		[SerializeField] ParticleSystem hitEffect;
+		[SerializeField] ParticleSystem hitAirEffect;
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -39,16 +40,36 @@ namespace Game.Player {
 		// –A
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
+			if (!IsInAir) {
+				IsInAir = true;
+
+				HitEffect(collision);
+			}
+		}
+
+		private void OnTriggerStay2D(Collider2D collision)
+		{
 			IsInAir = true;
 		}
 
 		private void OnTriggerExit2D(Collider2D collision)
 		{
-			IsInAir = false;
+			if (IsInAir) {
+				IsInAir = false;
+
+				HitEffect(collision);
+			}
 		}
 
 		//-------------------------------------------------------------------
 		/* Methods */
+		void HitEffect(Collider2D collision)
+		{
+			if (collision.gameObject.layer == LayerMask.NameToLayer("Air")) {
+				var pos = (transform.position + collision.gameObject.transform.position) / 2;
 
+				Instantiate(hitAirEffect, pos, Quaternion.identity);
+			}
+		}
 	}
 }

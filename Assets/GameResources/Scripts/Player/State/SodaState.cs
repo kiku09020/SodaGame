@@ -17,6 +17,8 @@ namespace Game.Player.State {
 		/* Events */
 		public override async void OnStateEnter()
 		{
+			rendererController.ChangeFace(PlayerRendererController.PlayerFace.splashing);
+
 			sodaParticle.Play();
 			NAudioController.Play("sodaFryingVibration_loop");
 			await seManager.SetLoop()

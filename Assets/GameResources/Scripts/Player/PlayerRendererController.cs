@@ -7,12 +7,21 @@ using UnityEngine;
 namespace Game.Player {
 	public class PlayerRendererController : MonoBehaviour {
 		/* Fields */
+		[SerializeField] SpriteRenderer rend;
 		[SerializeField] CinemachineVirtualCamera virtualCamera;
 		[SerializeField] ParticleSystem deadEffect;
 
 		[SerializeField] PlayerCore player;
 
+		[SerializeField] List<Sprite> faceSprites = new List<Sprite>();
+
 		bool isInvisibled = false;
+
+		public enum PlayerFace {
+			normal ,
+			shaked,
+			splashing,
+		}
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -23,21 +32,29 @@ namespace Game.Player {
 		// 画面外
 		private void OnBecameInvisible()
 		{
+			GameOverPorcess();
+
+		}
+
+		//-------------------------------------------------------------------
+		/* Methods */
+		public void GameOverPorcess()
+		{
 			if (!isInvisibled) {
 				isInvisibled = true;
 				virtualCamera.enabled = false;
-				Instantiate(deadEffect,transform.position,Quaternion.identity);
+				Instantiate(deadEffect, transform.position, Quaternion.identity);
 
 				// ゲームオーバーにする
 				GameManager.SetGameOvered();
 
 				player.gameObject.SetActive(false);
 			}
-
 		}
 
-		//-------------------------------------------------------------------
-		/* Methods */
-
+		public void ChangeFace(PlayerFace faceType)
+		{
+			rend.sprite = faceSprites[(int)faceType];
+		}
 	}
 }

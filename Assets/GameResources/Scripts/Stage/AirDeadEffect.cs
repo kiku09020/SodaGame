@@ -2,28 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Player.State {
-    public class ShakingState : PlayerStateBase {
+namespace Game.Stage {
+    public class AirDeadEffect : MonoBehaviour {
 		/* Fields */
-		[SerializeField] PlayerShaker shaker;
+		[SerializeField] Air air;
 
 		//-------------------------------------------------------------------
 		/* Properties */
+
 		//-------------------------------------------------------------------
 		/* Events */
-		public override void OnStateEnter()
+		private void OnParticleSystemStopped()
 		{
-			rendererController.ChangeFace(PlayerRendererController.PlayerFace.shaked);
-		}
-
-		public override void OnStateUpdate()
-		{
-			shaker.Shake();
-		}
-
-		public override void OnStateExit()
-		{
-
+			air.Release();
 		}
 
 		//-------------------------------------------------------------------

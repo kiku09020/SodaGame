@@ -13,7 +13,7 @@ namespace Game.Player.State {
 		/* Events */
 		public override void OnStateEnter()
 		{
-
+			rendererController.ChangeFace(PlayerRendererController.PlayerFace.normal);
 		}
 
 		public override void OnStateUpdate()
