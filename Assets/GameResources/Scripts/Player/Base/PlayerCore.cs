@@ -12,6 +12,8 @@ namespace Game.Player {
 
 		//-------------------------------------------------------------------
 		/* Properties */
+		/// <summary> ‹ó‹C’†‚É‚¢‚é‚© </summary>
+		public bool IsInAir { get; private set; }
 
 		//-------------------------------------------------------------------
 		/* Events */
@@ -26,11 +28,23 @@ namespace Game.Player {
 			stateMachine.StateUpdate();
 		}
 
+		// •Ç‚Æ‚©
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
 			NAudioController.Play("Hit");
 
 			Instantiate(hitEffect, collision.contacts[0].point, Quaternion.identity);
+		}
+
+		// –A
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			IsInAir = true;
+		}
+
+		private void OnTriggerExit2D(Collider2D collision)
+		{
+			IsInAir = false;
 		}
 
 		//-------------------------------------------------------------------

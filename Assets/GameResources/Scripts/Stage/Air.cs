@@ -6,8 +6,11 @@ using UnityEngine;
 namespace Game.Stage {
 	public class Air : PooledObject<Air> {
 		/* Fields */
+		[Header("Components")]
 		[SerializeField] SpriteRenderer rend;
 
+
+		[Header("Parameters")]
 		[SerializeField, Tooltip("ˆÚ“®‘¬“x")] float upSpeedMin = .0001f;
 		[SerializeField, Tooltip("")] float upSpeedMax = .01f; 
 

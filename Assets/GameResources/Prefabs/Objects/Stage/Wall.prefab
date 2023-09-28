@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 6712058305536353333, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
+      propertyPath: m_Color.a
+      value: 0.2509804
+      objectReference: {fileID: 0}
     - target: {fileID: 7622557544995989664, guid: 4fa8be00d529e7845b4835d13340b0ee, type: 3}
       propertyPath: m_Name
       value: Wall

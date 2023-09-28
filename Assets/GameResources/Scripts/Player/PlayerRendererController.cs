@@ -8,6 +8,9 @@ namespace Game.Player {
 	public class PlayerRendererController : MonoBehaviour {
 		/* Fields */
 		[SerializeField] CinemachineVirtualCamera virtualCamera;
+		[SerializeField] ParticleSystem deadEffect;
+
+		[SerializeField] PlayerCore player;
 
 		bool isInvisibled = false;
 
@@ -23,9 +26,12 @@ namespace Game.Player {
 			if (!isInvisibled) {
 				isInvisibled = true;
 				virtualCamera.enabled = false;
+				Instantiate(deadEffect,transform.position,Quaternion.identity);
 
 				// ゲームオーバーにする
 				GameManager.SetGameOvered();
+
+				player.gameObject.SetActive(false);
 			}
 
 		}

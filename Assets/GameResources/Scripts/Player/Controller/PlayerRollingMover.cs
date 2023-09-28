@@ -70,7 +70,7 @@ namespace Game.Player {
 		// í‚é~ÇµÇΩèuä‘
 		void OnStopMoment()
 		{
-			if (moveFirst) {
+			if (moveFirst && core.IsInAir) {
 				moveFirst = false;
 				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 				rb.velocity = Vector2.zero;

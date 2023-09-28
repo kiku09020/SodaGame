@@ -10,7 +10,7 @@ namespace Game.Stage {
 		[SerializeField] float xRange = 3;
 		[SerializeField, Tooltip("生成位置からカメラ位置の距離")]
 		float generateDistance = 10;
-		[SerializeField, Tooltip("カメラ位置からの次の生成位置までの距離")] 
+		[SerializeField, Tooltip("カメラ位置からの次の生成位置までの距離")]
 		float generateOffset = 15;
 
 		[SerializeField] float destroyDistance = 10;
