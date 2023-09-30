@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Stage {
-	public class Air : PooledObject<Air> {
+	public class Air : StageObjectBase<Air> {
 		/* Fields */
 		[Header("Components")]
 		[SerializeField] SpriteRenderer rend;
@@ -67,13 +67,6 @@ namespace Game.Stage {
 		void SetUpSpeed()
 		{
 			upSpeed = Random.Range(upSpeedMin, upSpeedMax);
-		}
-
-		public void SetWidth(float width)
-		{
-			//rend.size = new Vector2(width, width);
-
-			transform.localScale = Vector2.one * width;
 		}
 
 		void LifeTimer()

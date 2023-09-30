@@ -8,6 +8,7 @@ using Cysharp.Threading.Tasks;
 public class SerialHandler : MonoBehaviour {
 	[Header("Serial Options")]
 	[SerializeField, Tooltip("開かれるポートのボーレート")] int baudRate = 9600;
+	[SerializeField, Tooltip("タイムアウト")] int timeoutMs = 5000;
 
 	SerialPort serialPort;                  // シリアルポート
 
@@ -66,6 +67,9 @@ public class SerialHandler : MonoBehaviour {
 		if (SerialSelector.TargetPortName != null && serialPort == null) {
 			serialPort = new SerialPort(SerialSelector.TargetPortName, baudRate, Parity.None, 8, StopBits.One);        // ポートインスタンス作成
 
+			// タイムアウトをミリ秒で指定
+			serialPort.ReadTimeout = timeoutMs;
+
 			try {
 				serialPort.Open();                                      // 作成したポートを開く
 			}
@@ -113,6 +117,8 @@ public class SerialHandler : MonoBehaviour {
 			serialPort?.Dispose();
 			Debug.LogWarning($"正常に終了しませんでした: {serialPort?.PortName}");
 		}
+
+		serialPort = null;
 	}
 
 	//--------------------------------------------------

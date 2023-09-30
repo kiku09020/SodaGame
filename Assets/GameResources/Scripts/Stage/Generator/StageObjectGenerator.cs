@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Stage {
-	public class StageGenerator : MyObjectPool<Air> {
+	public class StageObjectGenerator<T> : MyObjectPool<T> where T : StageObjectBase<T> {
 		/* Fields */
 		[Header("Parameters")]
 		[SerializeField] float xRange = 3;
@@ -22,7 +22,7 @@ namespace Game.Stage {
 
 		float currentCameraPosY;        // 現在のカメラのY位置
 
-		List<Air> stages = new List<Air>();
+		List<T> stages = new List<T>();
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -43,14 +43,14 @@ namespace Game.Stage {
 			DestroyGeneratedObj();
 		}
 
-		protected override void OnGetFromPool(Air obj)
+		protected override void OnGetFromPool(T obj)
 		{
 			base.OnGetFromPool(obj);
 
 			stages.Add(obj);
 		}
 
-		protected override void OnReleaseToPool(Air obj)
+		protected override void OnReleaseToPool(T obj)
 		{
 			base.OnReleaseToPool(obj);
 
@@ -68,7 +68,7 @@ namespace Game.Stage {
 		}
 
 		// 位置とか大きさ指定する
-		void SetStageTransform(Air stage)
+		void SetStageTransform(T stage)
 		{
 			// 位置指定
 			float randomX = Random.Range(-xRange, xRange);
