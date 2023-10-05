@@ -8,12 +8,7 @@ using UnityEngine;
 
 namespace GameController.Manager {
 	public class GameManager : ObjectCore {
-
-		[SerializeField] Camera cam;
-
 		/* Properties */
-		/// <summary> ゲームクリアフラグ </summary>
-		public static bool IsGameCleared { get; private set; }
 		/// <summary> ゲームオーバーフラグ </summary>
 		public static bool IsGameOvered { get; private set; }
 
@@ -27,7 +22,6 @@ namespace GameController.Manager {
 		{
 			PauseManager.UnPause();
 
-			IsGameCleared = false;
 			IsGameOvered = false;
 			IsResult = false;
 		}
@@ -38,7 +32,7 @@ namespace GameController.Manager {
 
 				if (!once) {
 					once = true;
-					cam.transform.DOShakePosition(1);
+					Camera.main.transform.DOShakePosition(1);
 
 					UIManager.HideAllUIGroups();
 
@@ -53,8 +47,6 @@ namespace GameController.Manager {
 
 		//--------------------------------------------------
 		/* Setters */
-		/// <summary> ゲームクリア </summary>
-		public static void SetGameCleared() { IsGameCleared = true; }
 		/// <summary> ゲームオーバー </summary>
 		public static void SetGameOvered() { IsGameOvered = true; }
 	}

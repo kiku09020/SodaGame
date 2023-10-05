@@ -18,7 +18,7 @@ namespace Game.Player {
 		bool isInvisibled = false;
 
 		public enum PlayerFace {
-			normal ,
+			normal,
 			shaked,
 			splashing,
 		}
@@ -38,19 +38,23 @@ namespace Game.Player {
 
 		//-------------------------------------------------------------------
 		/* Methods */
-		public void GameOverPorcess()
+		public async void GameOverPorcess()
 		{
 			if (!isInvisibled) {
 				isInvisibled = true;
 				virtualCamera.enabled = false;
 				Instantiate(deadEffect, transform.position, Quaternion.identity);
 
+				await player.SEManager
+					.SetVolume(.25f)
+					.SetLoop(false)
+					.PlayAudio("Dead");
 				NAudioController.Play("Damaged");
 
 				// ゲームオーバーにする
 				GameManager.SetGameOvered();
 
-				player.gameObject.SetActive(false);
+				rend.enabled = false;
 			}
 		}
 

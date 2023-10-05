@@ -7,6 +7,7 @@ namespace Game.Player {
 	public class PlayerCore : ObjectCore {
 		/* Fields */
 		[SerializeField] PlayerStateMachine stateMachine;
+		[SerializeField] SEManager seManager;
 
 		[SerializeField] ParticleSystem hitEffect;
 		[SerializeField] ParticleSystem hitAirEffect;
@@ -15,6 +16,8 @@ namespace Game.Player {
 		/* Properties */
 		/// <summary> âΩÇ©Ç…êGÇÍÇƒÇ¢ÇÈÇ© </summary>
 		public bool IsTouching { get; private set; }
+
+		public SEManager SEManager => seManager;
 
 		//-------------------------------------------------------------------
 		/* Events */

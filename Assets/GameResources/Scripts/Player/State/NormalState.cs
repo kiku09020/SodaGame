@@ -1,3 +1,4 @@
+using GameController.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,9 @@ namespace Game.Player.State {
 
 		public override void OnStateUpdate()
 		{
-			mover.Move();
+			if (!GameManager.IsGameOvered) {
+				mover.Move();
+			}
 		}
 
 		public override void OnStateExit()
