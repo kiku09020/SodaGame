@@ -15,3 +15,7 @@ MonoBehaviour:
   dataList:
   - audioName: Soda
     audioClip: {fileID: 8300000, guid: 5a1aed0852111e445b4dc18cfa9e81d7, type: 3}
+  - audioName: Shaking
+    audioClip: {fileID: 8300000, guid: 0de6428af68946b43927e78132c4412e, type: 3}
+  - audioName: Dead
+    audioClip: {fileID: 8300000, guid: a01cb053a0ee6ad418ff00e97e3a06d0, type: 3}

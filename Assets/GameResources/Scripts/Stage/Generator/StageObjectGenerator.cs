@@ -8,6 +8,9 @@ namespace Game.Stage {
 		/* Fields */
 		[Header("Parameters")]
 		[SerializeField] float xRange = 3;
+
+		[SerializeField] float startGenerateY = 15;
+
 		[SerializeField, Tooltip("生成位置からカメラ位置の距離")]
 		float generateDistance = 10;
 		[SerializeField, Tooltip("カメラ位置からの次の生成位置までの距離")]
@@ -29,6 +32,11 @@ namespace Game.Stage {
 
 		//-------------------------------------------------------------------
 		/* Events */
+		private void Start()
+		{
+			generateY = startGenerateY;
+		}
+
 		private void FixedUpdate()
 		{
 			// カメラ位置更新
@@ -73,13 +81,11 @@ namespace Game.Stage {
 			// 位置指定
 			float randomX = Random.Range(-xRange, xRange);
 
-			stage.transform.position = new Vector2(randomX, 10);
+			stage.transform.position = new Vector2(randomX, generateY);
 
 			// 幅指定
 			float randomWidth = Random.Range(minWidth, maxWidth);
 			stage.SetWidth(randomWidth);
-
-			stage.transform.position = new Vector2(randomX, generateY);
 		}
 
 		void SetGenrerateHeight()

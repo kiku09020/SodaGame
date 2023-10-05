@@ -1,3 +1,4 @@
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
@@ -10,6 +11,7 @@ namespace Game.Player {
 		/* Fields */
 		[SerializeField] SpriteRenderer rend;
 		[SerializeField] PlayerSodaManager sodaManager;
+		[SerializeField] PlayerCameraController cameraController;
 
 		[Header("Parameters")]
 		[SerializeField, Tooltip("U‚Á‚Ä‚é‚©‚Ç‚¤‚©‚Ìè‡’l")]
@@ -82,6 +84,8 @@ namespace Game.Player {
 		// U‚è‚Í‚¶‚ß‚½uŠÔ‚Ìˆ—
 		void OnShakeMoment()
 		{
+			cameraController.CameraShaking();
+
 			isShakeFirst = true;
 
 			// ƒVƒFƒCƒNƒAƒjƒ[ƒVƒ‡ƒ“
@@ -93,6 +97,8 @@ namespace Game.Player {
 		// U‚é‚Ì‚ğ~‚ß‚½uŠÔ‚Ìˆ—
 		void OnStopShakeMoment()
 		{
+			cameraController.CameraShakingEnd();
+
 			isShakeFirst = false;
 			shakePower = 0;
 

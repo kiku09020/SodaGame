@@ -45,6 +45,8 @@ namespace Game.Player {
 				virtualCamera.enabled = false;
 				Instantiate(deadEffect, transform.position, Quaternion.identity);
 
+				NAudioController.Play("Damaged");
+
 				// ゲームオーバーにする
 				GameManager.SetGameOvered();
 
