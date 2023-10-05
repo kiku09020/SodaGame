@@ -9,7 +9,7 @@ namespace Game.Stage {
 
 		//-------------------------------------------------------------------
 		/* Methods */
-		public void SetWidth(float width)
+		public void SetSize(float width)
 		{
 			transform.localScale = Vector2.one * width;
 		}
