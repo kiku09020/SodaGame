@@ -38,23 +38,17 @@ namespace Game.Player {
 
 		//-------------------------------------------------------------------
 		/* Methods */
-		public async void GameOverPorcess()
+		public void GameOverPorcess()
 		{
 			if (!isInvisibled) {
 				isInvisibled = true;
 				virtualCamera.enabled = false;
 				Instantiate(deadEffect, transform.position, Quaternion.identity);
 
-				await player.SEManager
-					.SetVolume(.25f)
-					.SetLoop(false)
-					.PlayAudio("Dead");
-				NAudioController.Play("Damaged");
-
 				// ゲームオーバーにする
 				GameManager.SetGameOvered();
 
-				rend.enabled = false;
+				player.gameObject.SetActive(false);	
 			}
 		}
 

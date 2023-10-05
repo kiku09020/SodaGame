@@ -33,9 +33,13 @@ namespace Game.Player {
 		}
 
 		// •Ç‚Æ‚©
-		private void OnCollisionEnter2D(Collision2D collision)
+		private async void OnCollisionEnter2D(Collision2D collision)
 		{
 			NAudioController.Play("Hit");
+
+			await seManager.PlayAudio("Hit", true);
+
+			seManager.SetLoop();
 
 			Instantiate(hitEffect, collision.contacts[0].point, Quaternion.identity);
 		}

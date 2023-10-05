@@ -16,6 +16,7 @@ namespace GameController {
 		[SerializeField] TextMeshProUGUI highScoreLabel;
 
 		[SerializeField] PlayerCore player;
+		[SerializeField] SEManager systemSoundManager;
 
 		[SerializeField] float resultScoreDuration = .5f;
 		[SerializeField] Ease resultScoreEase;
@@ -99,7 +100,8 @@ namespace GameController {
 				highScoreText.color = highScoreColor;
 				highScoreLabel.color = highScoreColor;
 
-
+				// å¯â âπçƒê∂
+				await systemSoundManager.PlayAudio("HighScore");
 			}
 
 			highScoreText.text = $"{highScore}m";

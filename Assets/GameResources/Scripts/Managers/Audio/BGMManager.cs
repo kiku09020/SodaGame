@@ -13,7 +13,7 @@ public class BGMManager : AudioManager<BGMManager>
 	{
 		base.Awake();
 
-		SetLoop();
+		source.loop = true;
 
 		if(firstBGM != null) {
 			PlayBGMWithFade(firstBGM.name, 1, 5);

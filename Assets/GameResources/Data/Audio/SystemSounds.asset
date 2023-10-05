@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 593b2a395c14f854787d19df1b469844, type: 3}
-  m_Name: PlayerSE
+  m_Name: SystemSounds
   m_EditorClassIdentifier: 
   dataList:
-  - audioName: Soda
-    audioClip: {fileID: 8300000, guid: 5a1aed0852111e445b4dc18cfa9e81d7, type: 3}
-  - audioName: Shaking
-    audioClip: {fileID: 8300000, guid: 0de6428af68946b43927e78132c4412e, type: 3}
   - audioName: Dead
     audioClip: {fileID: 8300000, guid: a01cb053a0ee6ad418ff00e97e3a06d0, type: 3}
+  - audioName: Tada
+    audioClip: {fileID: 8300000, guid: 3869186fcecd81d4ab96dac2d4019274, type: 3}
+  - audioName: HighScore
+    audioClip: {fileID: 8300000, guid: 265428806c817924785ac75a2e93ea94, type: 3}

@@ -18,6 +18,9 @@ namespace Game.Player {
 		[SerializeField, Tooltip("振ってるかどうかの閾値")]
 		float shakableThreshold = 5;
 
+		[SerializeField] float shakingCoolTimeDuration = .25f;
+		float shakingCoolTimer;
+
 		[Header("Animation")]
 		[SerializeField, Tooltip("振られているときのアニメーションの値"), Range(0, 1)]
 		float shakingTweenValue = .1f;
@@ -27,9 +30,9 @@ namespace Game.Player {
 		[Header("Debug")]
 		[SerializeField] float keyBoardSodaAmount = 1;
 
-		bool isShakeFirst;
-
 		Tween shakeTween;
+
+		bool isShakable;        // 振れるか
 
 		//-------------------------------------------------------------------
 		/* Methods */
@@ -53,25 +56,30 @@ namespace Game.Player {
 			}
 
 			if (isShaking) {
-				// 振り始め
-				if (!isShakeFirst) {
-					isShakeFirst = true;
+				isShakable = false;
+				shakingCoolTimer += Time.deltaTime;
+
+				if (shakingCoolTimer > shakingCoolTimeDuration) {
+					isShakable = true;
+					shakingCoolTimer = 0;
 				}
 
-				// 更新処理
-				ShakeUpdate(shakeAmount);
+				if (isShakable) {
+					// 更新処理
+					ShakeUpdate(shakeAmount);
+				}
 			}
 
 			// 離されたときの処理
 			else if (!PlayerController.ActiveController.IsPressed) {
-				isShakeFirst = false;
+				isShakable = true;
 				cameraController.CameraShakingEnd();
 				stateMachine.StateTransition("Soda");       // 通常状態に遷移
 			}
 		}
 
 		// 振っているときの更新処理
-		void ShakeUpdate(float shakeAmount)
+		async void ShakeUpdate(float shakeAmount)
 		{
 			// ソーダパワーに反映
 			sodaManager.AddPower(shakeAmount);
@@ -84,6 +92,8 @@ namespace Game.Player {
 			shakeTween = rend.transform.DOShakePosition(shakingTweenDuration, shakingTweenValue)
 				.SetEase(tweenEase)
 				.SetLoops(1, LoopType.Yoyo);
+
+			await core.SEManager.PlayAudio("Shake", true);
 		}
 	}
 }

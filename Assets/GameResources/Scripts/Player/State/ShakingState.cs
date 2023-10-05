@@ -1,4 +1,3 @@
-using GameController.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +18,7 @@ namespace Game.Player.State {
 
 		public override void OnStateUpdate()
 		{
-			if (!GameManager.IsGameOvered) {
-				shaker.Shake();
-			}
+			shaker.Shake();
 		}
 
 		public override void OnStateExit()

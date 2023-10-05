@@ -8,10 +8,12 @@ using UnityEngine;
 
 namespace GameController.Manager {
 	public class GameManager : ObjectCore {
+		[SerializeField] SEManager systemSoundsManager;
+
 		/* Properties */
 		/// <summary> ゲームオーバーフラグ </summary>
 		public static bool IsGameOvered { get; private set; }
-
+		/// <summary> リザルトフラグ </summary>
 		public static bool IsResult { get; private set; }
 
 		bool once;
@@ -28,20 +30,20 @@ namespace GameController.Manager {
 
 		private async void FixedUpdate()
 		{
-			if (IsGameOvered) {
+			if (IsGameOvered && !once) {
+				once = true;
 
-				if (!once) {
-					once = true;
-					Camera.main.transform.DOShakePosition(1);
+				await systemSoundsManager.PlayAudio("Dead");        // 効果音再生
+				Camera.main.transform.DOShakePosition(1);           // カメラ揺らす
+				UIManager.HideAllUIGroups();                        // UI非表示
 
-					UIManager.HideAllUIGroups();
+				// 待機
+				await UniTask.Delay(1000);
 
+				UIManager.ShowUIGroup<GameOverUIGroup>();           // リザルト画面表示
+				IsResult = true;
 
-					await UniTask.Delay(1000);
-
-					UIManager.ShowUIGroup<GameOverUIGroup>();
-					IsResult = true;
-				}
+				await systemSoundsManager.PlayAudio("Tada");
 			}
 		}
 
