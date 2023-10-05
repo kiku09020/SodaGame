@@ -13358,8 +13358,8 @@ MonoBehaviour:
   sodaManager: {fileID: 16845034}
   cameraController: {fileID: 1522159949}
   shakableThreshold: 1.5
-  shakingTweenValue: 0.5
-  shakingTweenDuration: 0.1
+  shakingTweenValue: 0.1
+  shakingTweenDuration: 0.05
   tweenEase: 0
   keyBoardSodaAmount: 3
 --- !u!114 &1522159949
@@ -13375,7 +13375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1568877387}
-  cameraShakingDutch: 1
+  cameraShakingValue: 0.5
   cameraShakingDuration: 0.1
   cameraShakingEase: 6
 --- !u!1 &1568877385

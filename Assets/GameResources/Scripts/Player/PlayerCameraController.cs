@@ -10,32 +10,38 @@ namespace Game.Player {
 		/* Fields */
 		[Header("Camera")]
 		[SerializeField] CinemachineVirtualCamera cam;
-		[SerializeField] float cameraShakingDutch = 5;
+		[SerializeField] float cameraShakingValue = 5;
 		[SerializeField] float cameraShakingDuration = .2f;
 		[SerializeField] Ease cameraShakingEase;
 
 		Tween shakingCameraTween;
 
-		//-------------------------------------------------------------------
-		/* Properties */
-
-		//-------------------------------------------------------------------
-		/* Events */
-
         //-------------------------------------------------------------------
         /* Methods */
-		public void CameraShaking()
+		public void CameraShaking(float shakingAmount)
 		{
-			// ƒJƒƒ‰U‚é
-			shakingCameraTween = DOVirtual.Float(-cameraShakingDutch, cameraShakingDutch, cameraShakingDuration, value => {
-				cam.m_Lens.Dutch = value;
-			}).SetLoops(-1, LoopType.Yoyo).SetEase(cameraShakingEase);
+			var fixedShakingAmount = shakingAmount * cameraShakingValue;
+
+			// ¶ŒX‚«‚¾‚Á‚½‚çA‰E‚ÉŒX‚¯‚é
+			if (cam.m_Lens.Dutch <= 0) {
+				shakingCameraTween = DOVirtual.Float(cam.m_Lens.Dutch, fixedShakingAmount, cameraShakingDuration, value => {
+					cam.m_Lens.Dutch = value;
+				}).SetEase(cameraShakingEase);
+			}
+
+			// ‰EŒX‚«‚¾‚Á‚½‚çA¶‚É
+			else {
+				shakingCameraTween = DOVirtual.Float(cam.m_Lens.Dutch, -fixedShakingAmount, cameraShakingDuration, value => {
+					cam.m_Lens.Dutch = value;
+				}).SetEase(cameraShakingEase);
+			}
+
+
 		}
 
 		public void CameraShakingEnd()
 		{
-			// ƒJƒƒ‰ŒX‚«–ß‚·
-			shakingCameraTween.Kill();
+			shakingCameraTween.Complete();
 
 			DOVirtual.Float(cam.m_Lens.Dutch, 0, cameraShakingDuration, value => {
 				cam.m_Lens.Dutch = value;

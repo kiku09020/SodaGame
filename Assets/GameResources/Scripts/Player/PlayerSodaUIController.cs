@@ -20,17 +20,12 @@ namespace Game.Player {
         /* Events */
         void Awake()
         {
-
-        }
+            sodaManager.ChangedPower+=()=> amountImage.fillAmount = sodaManager.PowerRate;
+		}
 
         void Update()
         {
             canvas.transform.rotation = Quaternion.identity;
-        }
-
-        void FixedUpdate()
-        {
-            amountImage.fillAmount = sodaManager.PowerRate;
         }
 
         //-------------------------------------------------------------------

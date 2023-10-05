@@ -13,8 +13,8 @@ namespace Game.Player {
 
 		//-------------------------------------------------------------------
 		/* Properties */
-		/// <summary> ãÛãCíÜÇ…Ç¢ÇÈÇ© </summary>
-		public bool IsInAir { get; private set; }
+		/// <summary> âΩÇ©Ç…êGÇÍÇƒÇ¢ÇÈÇ© </summary>
+		public bool IsTouching { get; private set; }
 
 		//-------------------------------------------------------------------
 		/* Events */
@@ -40,8 +40,8 @@ namespace Game.Player {
 		// ñA
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			if (!IsInAir) {
-				IsInAir = true;
+			if (!IsTouching) {
+				IsTouching = true;
 
 				HitEffect(collision);
 			}
@@ -49,13 +49,13 @@ namespace Game.Player {
 
 		private void OnTriggerStay2D(Collider2D collision)
 		{
-			IsInAir = true;
+			IsTouching = true;
 		}
 
 		private void OnTriggerExit2D(Collider2D collision)
 		{
-			if (IsInAir) {
-				IsInAir = false;
+			if (IsTouching) {
+				IsTouching = false;
 
 				HitEffect(collision);
 			}

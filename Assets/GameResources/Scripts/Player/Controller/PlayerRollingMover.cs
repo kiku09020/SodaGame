@@ -62,7 +62,7 @@ namespace Game.Player {
 		// í‚é~ÇµÇΩèuä‘
 		void OnStopMoment()
 		{
-			if (moving && core.IsInAir) {
+			if (core.IsTouching) {
 				moving = false;
 				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 				rb.velocity = new Vector2(0, rb.velocity.y);

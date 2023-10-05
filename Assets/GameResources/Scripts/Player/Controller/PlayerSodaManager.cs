@@ -13,20 +13,27 @@ namespace Game.Player {
 		[SerializeField] float maxPower = 200f;
 		[SerializeField] float removePowerAmount = .2f;
 
-		float power;		// 現在の力
+		float power;        // 現在の力
 
 		//-------------------------------------------------------------------
 		/* Properties */
-		public float PowerRate => power / maxPower;		// 力 / 最大力
+		public float PowerRate => power / maxPower;     // 力 / 最大力
 
 		/// <summary> ソーダ噴き出し可能か </summary>
 		public bool IsSodable { get; private set; }
 
 		//-------------------------------------------------------------------
 		/* Events */
+		public event System.Action ChangedPower;
+
+		private void Start()
+		{
+			ChangedPower?.Invoke();
+		}
+
 		private void FixedUpdate()
 		{
-			IsSodable = (power > 0) ? true : false;		// 飛行可能フラグの判定
+			IsSodable = (power > 0) ? true : false;     // 飛行可能フラグの判定
 		}
 
 		// ソーダ状態の時のUpdate
@@ -43,13 +50,15 @@ namespace Game.Player {
 		//-------------------------------------------------------------------
 		/* Methods */
 		// ソーダパワーの指定
-		public void SetPower(float targetPower)
+		public void AddPower(float amount)
 		{
-			power = targetPower;
+			power += amount;
 
 			if (power > maxPower) {
 				power = maxPower;
 			}
+
+			ChangedPower?.Invoke();
 		}
 
 		// パワー減らす
@@ -58,10 +67,12 @@ namespace Game.Player {
 			if (power > 0) {
 				power -= removePowerAmount;
 
-				if(power < 0) {
+				if (power < 0) {
 					power = 0;
 				}
 			}
+
+			ChangedPower?.Invoke();
 		}
 	}
 }
