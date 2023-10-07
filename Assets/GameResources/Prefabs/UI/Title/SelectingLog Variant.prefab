@@ -217,8 +217,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
-  m_sharedMaterial: {fileID: 4047835306435116947, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
+  m_sharedMaterial: {fileID: 3174346326366412984, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -355,9 +355,9 @@ RectTransform:
   m_Father: {fileID: 4032394104090550493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3836467269485656912
 MonoBehaviour:
@@ -646,8 +646,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
-  m_sharedMaterial: {fileID: 4047835306435116947, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
+  m_sharedMaterial: {fileID: 3174346326366412984, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1178,7 +1178,7 @@ RectTransform:
   m_Father: {fileID: 3738466034635803052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1666,7 +1666,7 @@ PrefabInstance:
       objectReference: {fileID: 4685965524780872981}
     - target: {fileID: 6366649164086669292, guid: 72fa8bcda9dbf1a4b95f98209a726d1c, type: 3}
       propertyPath: logMessage
-      value: "\u4F7F\u7528\u3059\u308B\u30C7\u30D0\u30A4\u30B9\u304C\n\u63A5\u7D9A\u3055\u308C\u305F\u30B7\u30EA\u30A2\u30EB\u30DD\u30FC\u30C8\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+      value: "\u4F7F\u7528\u3059\u308B\u30C7\u30D0\u30A4\u30B9\u304C\n\u63A5\u7D9A\u3055\u308C\u305F\u30B7\u30EA\u30A2\u30EB\u30DD\u30FC\u30C8\u3092\u9078\u3093\u3067\u304F\u3060\u3055\u3044\u3002"
       objectReference: {fileID: 0}
     - target: {fileID: 6887619066992456351, guid: 72fa8bcda9dbf1a4b95f98209a726d1c, type: 3}
       propertyPath: m_AnchorMax.y

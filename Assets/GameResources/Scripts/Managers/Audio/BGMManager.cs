@@ -9,14 +9,20 @@ public class BGMManager : AudioManager<BGMManager>
 	[SerializeField, Tooltip("àÍî‘ç≈èâÇ…ó¨Ç∑BGM")]
 	AudioClip firstBGM;
 
-	protected override void Awake()
+	[SerializeField,Tooltip("DontDestroyOnLoad")] bool isNotDestroied;
+
+	protected override async void Awake()
 	{
+		if (isNotDestroied) {
+			DontDestroyOnLoad(gameObject);
+		}
+
 		base.Awake();
 
 		source.loop = true;
 
 		if(firstBGM != null) {
-			PlayBGMWithFade(firstBGM.name, 1, 5);
+			await PlayAudio(firstBGM);
 		}
 	}
 

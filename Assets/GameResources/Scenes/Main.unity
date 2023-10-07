@@ -11588,11 +11588,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
       propertyPath: m_fontSize
-      value: 40.4
+      value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
+    - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3174346326366412984, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
     - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13741,7 +13753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1568877387}
-  cameraShakingValue: 0.5
+  cameraShakingValue: 0.75
   cameraShakingDuration: 0.1
   cameraShakingEase: 6
 --- !u!1 &1568877385
@@ -14694,19 +14706,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
       propertyPath: m_text
-      value: Hold button to Restart
+      value: "\u9577\u62BC\u3057\u3067\u30EA\u30B9\u30BF\u30FC\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
       propertyPath: m_fontSize
-      value: 34.5
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
       propertyPath: m_fontSizeBase
-      value: 24
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 7218784160079847818, guid: cf0e7775650c6cb4ea050ad8abe86309, type: 3}
       propertyPath: m_enableAutoSizing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

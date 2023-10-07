@@ -352,8 +352,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30C0\u30A4\u30A2\u30ED\u30B0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
-  m_sharedMaterial: {fileID: 4047835306435116947, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
+  m_sharedMaterial: {fileID: 3174346326366412984, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -483,6 +483,7 @@ MonoBehaviour:
   backImage: {fileID: 2798224836139563590}
   excDialog: {fileID: 0}
   backFadeDuration: 0.5
+  isDebug: 1
 --- !u!1 &9027232106501097771
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,8 +551,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: OK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
-  m_sharedMaterial: {fileID: 4047835306435116947, guid: 6bf73ae3658144c428fd607bb00584b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
+  m_sharedMaterial: {fileID: 3174346326366412984, guid: 86fc8dc07bcd4e344bbcb9f84bf01236, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -965,19 +966,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 912305088203788070, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 912305088203788070, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 912305088203788070, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 570
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 912305088203788070, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3908581063032096344, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1125,19 +1126,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9059261252558618936, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9059261252558618936, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9059261252558618936, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 190
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9059261252558618936, guid: 88faa13266beb4e4d83f0bec2faba96c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -86
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
