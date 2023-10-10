@@ -83,9 +83,10 @@ public class RankingController : MonoBehaviour, IDataUserBase<RankingData> {
 		rankData.RemoveAt(rankData.Count - 1);
 
 		dataManager.SaveData();
+		SetRanking();
 	}
 
-	public void SetRanking()
+	void SetRanking()
 	{
 		// テキスト変更
 		for (int i = 0; i < RankingData.RANK_COUNT; i++) {

@@ -31,12 +31,12 @@ namespace Game.Stage {
 
 		//-------------------------------------------------------------------
 		/* Events */
-		private void Awake()
+		protected virtual void Awake()
 		{
 			startColor = rend.color;
 		}
 
-		private void FixedUpdate()
+		protected virtual void FixedUpdate()
 		{
 			// 移動
 			transform.Translate(0, upSpeed, 0);
@@ -62,6 +62,19 @@ namespace Game.Stage {
 			SetUpSpeed();
 		}
 
+		/// <summary> 死亡処理 </summary>
+		protected virtual void OnDeadProcess()
+		{
+			lifeTimer = 0;
+
+			// 非表示、浮力無効化
+			rend.enabled = false;
+			buoyancy.enabled = false;
+
+			// 再生(再生終了時にRelease)
+			deadEffect.Play();
+		}
+
 		//-------------------------------------------------------------------
 		/* Methods */
 		void SetUpSpeed()
@@ -80,14 +93,7 @@ namespace Game.Stage {
 			}
 
 			if (lifeTimer >= airLifeTime) {
-				lifeTimer = 0;
-
-				// 非表示、浮力無効化
-				rend.enabled = false;
-				buoyancy.enabled = false;
-
-				// 再生(再生終了時にRelease)
-				deadEffect.Play();
+				OnDeadProcess();
 			}
 		}
 

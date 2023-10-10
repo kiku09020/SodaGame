@@ -33,6 +33,7 @@ namespace GameController.Manager {
 			if (IsGameOvered && !once) {
 				once = true;
 
+				NAudioController.Play("Dead");
 				await systemSoundsManager.PlayAudio("Dead");        // Œø‰Ê‰¹Ä¶
 				Camera.main.transform.DOShakePosition(1);           // ƒJƒƒ‰—h‚ç‚·
 				UIManager.HideAllUIGroups();                        // UI”ñ•\¦

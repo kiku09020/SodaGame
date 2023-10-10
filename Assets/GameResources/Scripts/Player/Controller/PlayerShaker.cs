@@ -93,6 +93,8 @@ namespace Game.Player {
 				.SetEase(tweenEase)
 				.SetLoops(1, LoopType.Yoyo);
 
+			NAudioController.Stop("Shake");
+			NAudioController.Play("Shake");
 			await core.SEManager.PlayAudio("Shake", true);
 		}
 	}

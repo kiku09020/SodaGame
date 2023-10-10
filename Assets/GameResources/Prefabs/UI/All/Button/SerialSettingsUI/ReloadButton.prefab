@@ -5,8 +5,21 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3360047796326022334, guid: 562b8851d7050214098495ac9635292b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360047796326022334, guid: 562b8851d7050214098495ac9635292b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.896577
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360047796326022334, guid: 562b8851d7050214098495ac9635292b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4256279244630819568, guid: 562b8851d7050214098495ac9635292b, type: 3}
       propertyPath: m_text
       value: Reload
@@ -100,4 +113,7 @@ PrefabInstance:
       value: ReloadButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 562b8851d7050214098495ac9635292b, type: 3}
