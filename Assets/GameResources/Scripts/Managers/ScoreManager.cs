@@ -10,6 +10,9 @@ using UnityEngine;
 namespace GameController {
 	public class ScoreManager : MonoBehaviour {
 		/* Fields */
+		/// <summary> スコアの単位 </summary>
+		const string SCORE_UNIT = "cm";
+
 		[SerializeField] TextMeshProUGUI scoreText;             // ゲーム中のスコアテキスト
 		[SerializeField] TextMeshProUGUI resultScoreText;       // 結果スコアテキスト
 		[SerializeField] TextMeshProUGUI highScoreText;        // ハイスコアテキスト
@@ -35,33 +38,38 @@ namespace GameController {
 		[SerializeField] Color highScoreColor = Color.yellow;
 
 		int currentScore;
-		int resultScore;
 		int highScore;
 
 		bool resultOnce;
 
 		//-------------------------------------------------------------------
 		/* Properties */
-		string ScoreText => $"Score:{currentScore}m";
+		public static string GetScoreText(int score) { return $"{score}{SCORE_UNIT}"; }
 
 		//-------------------------------------------------------------------
 		/* Events */
 
+		public static event System.Action<int> OnResult;
+
 		void FixedUpdate()
 		{
+			// スコア更新
 			currentScore = (int)player.transform.position.y;
-			scoreText.text = ScoreText;
+			scoreText.text = $"Score: {GetScoreText(currentScore)}";
 
 			// ゲームオーバー時に、結果スコアを適用
 			if (GameManager.IsResult && !resultOnce) {
 				resultOnce = true;
 
-				DOVirtual.Float(0, currentScore, resultScoreDuration, value => {
-					resultScore = (int)value;
-					resultScoreText.text = $"{resultScore}m";
+				OnResult?.Invoke(currentScore);
+
+				// スコアテキストアニメーション
+				DOVirtual.Int(0, currentScore, resultScoreDuration, value => {
+					resultScoreText.text = GetScoreText(value);
 				})
 					.SetEase(resultScoreEase);
 
+				// ハイスコア処理
 				SetHighScore();
 			}
 		}
@@ -104,7 +112,8 @@ namespace GameController {
 				await systemSoundManager.PlayAudio("HighScore");
 			}
 
-			highScoreText.text = $"{highScore}m";
+			// ハイスコアテキスト更新
+			highScoreText.text = GetScoreText(highScore);
 		}
 	}
 }
