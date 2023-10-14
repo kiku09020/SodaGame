@@ -10,10 +10,12 @@ namespace Game.Stage {
 		[SerializeField] float explosionDelay = 3;
 		[SerializeField] float explosionPower = 100;
 
+		[Header("Components")]
+		[SerializeField] SEManager seManager;
+		[SerializeField] ExplosionRegionChecker regionChecker;
+
 		float explosionTimer;
 		bool isHitFirst;
-
-		Collider2D hitObject;
 
 		//-------------------------------------------------------------------
 		/* Properties */
@@ -31,11 +33,13 @@ namespace Game.Stage {
 			base.FixedUpdate();
 
 			if (isHitFirst) {
+				Blinking();
+
 				explosionTimer += Time.deltaTime;
 
 				// ŽžŠÔŒo‰ßŒãA”š”­
 				if (explosionTimer > explosionDelay) {
-					Explosion(hitObject);
+					OnDeadProcess();
 
 					explosionTimer = 0;
 				}
@@ -45,30 +49,33 @@ namespace Game.Stage {
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			isHitFirst = true;
-			hitObject = collision;
 		}
 
-		private void OnTriggerExit2D(Collider2D collision)
+		protected override void OnDeadProcess()
 		{
-			hitObject = null;
+			base.OnDeadProcess();
+
+			Explosion();
 		}
 
 		//-------------------------------------------------------------------
 		/* Methods */
 
-		void Explosion(Collider2D collider)
+		async void Explosion()
 		{
-			// rbŽæ“¾
-			var rb = collider?.GetComponentInChildren<Rigidbody2D>();
-			if (rb == null) return;
+			foreach (var col in regionChecker?.Colliders) {
+				// rbŽæ“¾
+				var rb = col?.GetComponentInChildren<Rigidbody2D>();
+				if (rb == null) continue;
 
-			// •ûŒü’è‚ß‚Ä”š”­
-			var dir = collider.transform.position - transform.position;
-			rb.AddForce(dir.normalized * explosionPower * (transform.localScale.x * .5f));
+				// •ûŒü’è‚ß‚Ä”š”­
+				var dir = col.transform.position - transform.position;
+				rb.AddForce(dir.normalized * explosionPower * (transform.localScale.x * .5f));
+
+			}
 
 			isHitFirst = false;
-
-			OnDeadProcess();
+			await seManager.PlayAudio("Bomb");
 		}
 	}
 }

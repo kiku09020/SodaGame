@@ -10,6 +10,8 @@ namespace Game.Player {
 		[SerializeField] Rigidbody2D rb;
 
 		[Header("Parameters")]
+		[SerializeField] float startSodaPower = 10;
+
 		[SerializeField, Tooltip("‰¡ˆÚ“®")] float moveSidePower = 1;
 		[SerializeField, Tooltip("’Y_•¬o—Í")] float sodaPower = 5;
 
@@ -27,6 +29,8 @@ namespace Game.Player {
 		float prevX;     // ‘OƒtƒŒ[ƒ€‚Ì¶‰E“ü—Í
 
 
+		public bool isFirstSoda;        // Å‰
+
 		//-------------------------------------------------------------------
 		/* Properties */
 
@@ -36,6 +40,13 @@ namespace Game.Player {
 		/// <summary> ’Y_•¬oˆÚ“® </summary>
 		public void MoveWithSoda()
 		{
+			if (!isFirstSoda) {
+				isFirstSoda = true;
+
+				// Å‰‚É‚Á”ò‚Ñ
+				rb.AddForce(core.transform.right * -1 * startSodaPower, ForceMode2D.Impulse);
+			}
+
 			// ’Y_•¬o
 			if (rb.velocity.y < sodaMaxVel) {
 				rb.AddForce(core.transform.right * -1 * sodaPower);

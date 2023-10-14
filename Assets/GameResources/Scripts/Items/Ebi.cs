@@ -1,10 +1,11 @@
 using Game.Player;
+using Game.Stage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Item {
-	public class Ebi : MonoBehaviour {
+	public class Ebi : StageObjectBase<Ebi> {
 		/* Fields */
 		[SerializeField] float addedSodaPower = 10;
 

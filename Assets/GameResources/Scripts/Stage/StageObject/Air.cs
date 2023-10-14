@@ -98,7 +98,7 @@ namespace Game.Stage {
 		}
 
 		// “_–Åˆ—
-		void Blinking()
+		protected void Blinking()
 		{
 			var a = Mathf.Cos((float)(2 * Mathf.PI * lifeTimer / cycle)) * .5f + .5f;
 

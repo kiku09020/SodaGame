@@ -18,6 +18,9 @@ namespace Game.Player {
 		[SerializeField, Tooltip("振ってるかどうかの閾値")]
 		float shakableThreshold = 5;
 
+		[SerializeField, Tooltip("振っている値の加算値")]
+		float shakingAddedAmount = 2;
+
 		[SerializeField] float shakingCoolTimeDuration = .25f;
 		float shakingCoolTimer;
 
@@ -82,7 +85,7 @@ namespace Game.Player {
 		async void ShakeUpdate(float shakeAmount)
 		{
 			// ソーダパワーに反映
-			sodaManager.AddPower(shakeAmount);
+			sodaManager.AddPower(shakeAmount + shakingAddedAmount);
 
 			// カメラ揺らす
 			cameraController.CameraShaking(shakeAmount);

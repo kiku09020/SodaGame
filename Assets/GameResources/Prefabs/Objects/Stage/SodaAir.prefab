@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 7214769704811248679}
   - component: {fileID: 5003195424379081178}
   - component: {fileID: 8221464339808251343}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: buoyancy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4944,7 +4944,7 @@ BuoyancyEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 8
   m_SurfaceLevel: 0.3
   m_Density: 3
   m_LinearDrag: 3
@@ -4967,7 +4967,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5138,14 +5138,14 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 777
+    m_Bits: 520
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 577
+    m_Bits: 320
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295

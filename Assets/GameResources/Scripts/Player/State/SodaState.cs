@@ -27,8 +27,8 @@ namespace Game.Player.State {
 
 		public override void OnStateUpdate()
 		{
-			sodaManager.SodaUpdate();
 			mover.MoveWithSoda();
+			sodaManager.SodaUpdate();
 		}
 
 		public override void OnStateExit()
@@ -38,6 +38,8 @@ namespace Game.Player.State {
 			seManager
 				.SetLoop(false)
 				.StopAudio();
+
+			mover.isFirstSoda = false;
 		}
 
 		//-------------------------------------------------------------------

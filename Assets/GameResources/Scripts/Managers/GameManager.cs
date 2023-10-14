@@ -5,9 +5,14 @@ using GameController.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameController.Manager {
 	public class GameManager : ObjectCore {
+		[Header("Parameters")]
+		[SerializeField, Tooltip("ESC長押し秒数")] float returnTitleDuration = 3;
+
+		[Header("Components")]
 		[SerializeField] SEManager systemSoundsManager;
 
 		/* Properties */
@@ -18,6 +23,8 @@ namespace GameController.Manager {
 
 		bool once;
 
+		float escTimer;
+
 		//--------------------------------------------------
 
 		void Start()
@@ -26,6 +33,11 @@ namespace GameController.Manager {
 
 			IsGameOvered = false;
 			IsResult = false;
+		}
+
+		private void Update()
+		{
+			ReturntoTitle();
 		}
 
 		private async void FixedUpdate()
@@ -52,5 +64,25 @@ namespace GameController.Manager {
 		/* Setters */
 		/// <summary> ゲームオーバー </summary>
 		public static void SetGameOvered() { IsGameOvered = true; }
+
+		// タイトル戻る処理
+		void ReturntoTitle()
+		{
+			// タイマー加算
+			if (Input.GetKey(KeyCode.Escape)) {
+				escTimer += Time.deltaTime;
+
+				// タイトルに戻る
+				if (escTimer >= returnTitleDuration) {
+					SceneManager.LoadScene("Title");
+					escTimer = 0;
+				}
+			}
+
+			// タイマーリセット
+			if (Input.GetKeyUp(KeyCode.Escape)) {
+				escTimer = 0;
+			}
+		}
 	}
 }
